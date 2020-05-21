@@ -109,6 +109,12 @@
     <ClCompile Include="src\XgBackGround.cpp">
       <Filter>xgLib</Filter>
     </ClCompile>
+    <ClCompile Include="src\XgPaper.cpp">
+      <Filter>xgLib</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgPixel.cpp">
+      <Filter>xgLib</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\XgMessagePanel.h">
@@ -199,6 +205,12 @@
       <Filter>xgLib</Filter>
     </ClInclude>
     <ClInclude Include="src\XgBackGround.h">
+      <Filter>xgLib</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgPaper.h">
+      <Filter>xgLib</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgPixel.h">
       <Filter>xgLib</Filter>
     </ClInclude>
   </ItemGroup>

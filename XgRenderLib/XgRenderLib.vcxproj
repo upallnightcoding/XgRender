@@ -176,6 +176,8 @@
     <ClInclude Include="src\XgInspectorPanel.h" />
     <ClInclude Include="src\XgKeyboard.h" />
     <ClInclude Include="src\XgMessagePanel.h" />
+    <ClInclude Include="src\XgPaper.h" />
+    <ClInclude Include="src\XgPixel.h" />
     <ClInclude Include="src\XgScreenSize.h" />
     <ClInclude Include="src\XgShader.h" />
     <ClInclude Include="src\XgShaderObject.h" />
@@ -206,6 +208,8 @@
     <ClCompile Include="src\XgInspectorPanel.cpp" />
     <ClCompile Include="src\XgKeyboard.cpp" />
     <ClCompile Include="src\XgMessagePanel.cpp" />
+    <ClCompile Include="src\XgPaper.cpp" />
+    <ClCompile Include="src\XgPixel.cpp" />
     <ClCompile Include="src\XgScreenSize.cpp" />
     <ClCompile Include="src\XgShader.cpp" />
     <ClCompile Include="src\XgShaderObject.cpp" />
