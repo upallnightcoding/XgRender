@@ -186,6 +186,8 @@
     <ClInclude Include="src\XgTexture.h" />
     <ClInclude Include="src\XgTracker.h" />
     <ClInclude Include="src\XgTransform.h" />
+    <ClInclude Include="src\XgProjectPanel.h" />
+    <ClInclude Include="src\XgWorkSpacePanel.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\XgAction.cpp" />
@@ -218,6 +220,8 @@
     <ClCompile Include="src\XgTexture.cpp" />
     <ClCompile Include="src\XgTracker.cpp" />
     <ClCompile Include="src\XgTransform.cpp" />
+    <ClCompile Include="src\XgProjectPanel.cpp" />
+    <ClCompile Include="src\XgWorkSpacePanel.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

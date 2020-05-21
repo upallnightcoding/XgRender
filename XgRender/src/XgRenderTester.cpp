@@ -18,6 +18,8 @@
 
 #include "XgMessagePanel.h"
 #include "XgInspectorPanel.h"
+#include "XgProjectPanel.h"
+#include "XgWorkSpacePanel.h"
 
 // include OpenGL
 #ifdef __WXMAC__
@@ -40,7 +42,7 @@ class XgRender : public wxApp
 
 private:
 	void createMenu(wxFrame *frame);
-	wxPanel *createFrameworksView(wxSplitterWindow *splittermain);
+	wxPanel *createProjectPanel(wxSplitterWindow *splittermain);
 	wxPanel *createWorkSpace(wxSplitterWindow *splittermain);
 	wxWindow *createFrameworksPanel(wxSplitterWindow *splittermain);
 	wxPanel *createInspectorPanel(wxSplitterWindow *splittermain);
@@ -114,7 +116,7 @@ wxWindow *XgRender::createFrameworksPanel(wxSplitterWindow *splittermain)
 
 	wxSplitterWindow *splitter = new wxSplitterWindow(panel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxSP_LIVE_UPDATE);
 
-	wxPanel *topPanel = createFrameworksView(splitter);
+	wxPanel *topPanel = createProjectPanel(splitter);
 
 	wxPanel *bottomPanel = createInspectorPanel(splitter);
 
@@ -159,30 +161,9 @@ wxPanel *XgRender::createInspectorPanel(wxSplitterWindow *splittermain)
 
 wxPanel *XgRender::createWorkSpace(wxSplitterWindow *splittermain)
 {
-	//wxPanel* noteBookPanel = new wxPanel(splittermain, wxID_ANY);
-	wxPanel *noteBookPanel =
-		new wxPanel(splittermain, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL | wxNO_BORDER);
+	XgWorkSpacePanel *workSpacePanel = new XgWorkSpacePanel(splittermain);
 
-	wxNotebook* notebook = new wxNotebook(noteBookPanel, wxID_ANY);
-
-	//wxPanel *canvasPanel = new wxPanel(notebook, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL | wxNO_BORDER);
-
-	int args[] = { WX_GL_RGBA, WX_GL_DOUBLEBUFFER, WX_GL_DEPTH_SIZE, 16, 0 };
-
-	XgCanvas *canvas = new XgCanvas(notebook, args);
-
-	wxTextCtrl* textCtrl1 = new wxTextCtrl(notebook, wxID_ANY, L"Tab 1 Contents");
-
-	notebook->AddPage(canvas, L"Game");
-	notebook->AddPage(textCtrl1, L"Tab 1");
-
-	wxStaticBoxSizer *sizer = new wxStaticBoxSizer(wxVERTICAL, noteBookPanel, _T("Workspace"));
-
-	sizer->Add(notebook, 1, wxALL | wxEXPAND, 5);
-
-	noteBookPanel->SetSizer(sizer);
-
-	return(noteBookPanel);
+	return(workSpacePanel);
 }
 
 wxPanel *XgRender::createMessagePanel(wxSplitterWindow *splittermain)
@@ -192,23 +173,9 @@ wxPanel *XgRender::createMessagePanel(wxSplitterWindow *splittermain)
 	return(messagePanel);
 }
 
-wxPanel *XgRender::createFrameworksView(wxSplitterWindow *splittermain)
+wxPanel *XgRender::createProjectPanel(wxSplitterWindow *splittermain)
 {
-	wxPanel *panel = new wxPanel(splittermain, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL | wxNO_BORDER);
+	XgProjectPanel *projectPanel = new XgProjectPanel(splittermain);
 
-	wxTreeCtrl *treeCntrl = new wxTreeCtrl(panel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTR_HAS_BUTTONS | wxTR_SINGLE);
-
-	wxTreeItemId treeRoot = treeCntrl->AddRoot(wxT("Project FirstGame"), 0, 0, new wxTreeItemData());
-
-	wxTreeItemId environment = treeCntrl->AppendItem(treeRoot, wxT("Environment"), 1, 1, new wxTreeItemData());
-
-	wxTreeItemId objects = treeCntrl->AppendItem(treeRoot, wxT("Objects"), 1, 1, new wxTreeItemData());
-
-	wxStaticBoxSizer *sizer = new wxStaticBoxSizer(wxVERTICAL, panel, _T("Project"));
-
-	sizer->Add(treeCntrl, 1, wxALL | wxEXPAND, 5);
-
-	panel->SetSizer(sizer);
-
-	return(panel);
+	return(projectPanel);
 }

@@ -4,7 +4,6 @@
 #include "XgShaderObject.h"
 
 XgPixel::XgPixel(std::string title, int screenWidth, int screenHeight)
-	: XgWindow(title, screenWidth, screenHeight)
 {
 
 }
@@ -39,7 +38,7 @@ void XgPixel::renderScreen(float &deltaTime, int &fps)
 
 	updateDeltaTime(deltaTime, fps);
 
-	paper->animate(&camera, screenSize);
+	//paper->animate(&camera, screenSize);
 }
 
 /*****************************************************************************

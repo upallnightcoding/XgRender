@@ -1,10 +1,9 @@
 #pragma once
-#include "XgWindow.h"
+
 #include "XgCamera.h"
 #include "XgPaper.h"
 
-class XgPixel :
-	public XgWindow
+class XgPixel 
 {
 public:
 	XgPixel(std::string title, int screenWidth, int screenHeight);

@@ -19,7 +19,7 @@ XgMessagePanel::XgMessagePanel(wxWindow *parent) :
 	listBox->Append(wxT("Testing 4"));
 	listBox->Append(wxT("Testing 5"));
 
-	wxStaticBoxSizer *sizer = new wxStaticBoxSizer(wxVERTICAL, this, _T("Frame View"));
+	wxStaticBoxSizer *sizer = new wxStaticBoxSizer(wxVERTICAL, this, _T("Message Panel"));
 
 	sizer->Add(listBox, 1, wxALL | wxEXPAND, 5);
 

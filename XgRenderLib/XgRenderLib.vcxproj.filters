@@ -20,7 +20,10 @@
     <Filter Include="xgLib\camera">
       <UniqueIdentifier>{e7323daa-9242-4f73-b940-dfd0e4fbcacc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="xgLib\event">
+    <Filter Include="xgLib\character">
+      <UniqueIdentifier>{6011624a-c88e-415d-97c2-ca7a5af63896}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="xgLib\framework">
       <UniqueIdentifier>{fdbc9282-d0eb-4177-94a6-0c3f78d5ef1d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -37,31 +40,13 @@
     <ClCompile Include="src\XgTransform.cpp">
       <Filter>xgLib</Filter>
     </ClCompile>
-    <ClCompile Include="src\XgSprite.cpp">
-      <Filter>xgLib</Filter>
-    </ClCompile>
-    <ClCompile Include="src\XgState.cpp">
-      <Filter>xgLib</Filter>
-    </ClCompile>
     <ClCompile Include="src\XgTexture.cpp">
       <Filter>xgLib</Filter>
     </ClCompile>
     <ClCompile Include="src\XgTracker.cpp">
       <Filter>xgLib</Filter>
     </ClCompile>
-    <ClCompile Include="src\XgBehavior.cpp">
-      <Filter>xgLib</Filter>
-    </ClCompile>
-    <ClCompile Include="src\XgCharacter.cpp">
-      <Filter>xgLib</Filter>
-    </ClCompile>
     <ClCompile Include="src\XgScreenSize.cpp">
-      <Filter>xgLib</Filter>
-    </ClCompile>
-    <ClCompile Include="src\XgFlipBook.cpp">
-      <Filter>xgLib</Filter>
-    </ClCompile>
-    <ClCompile Include="src\XgFramework.cpp">
       <Filter>xgLib</Filter>
     </ClCompile>
     <ClCompile Include="src\XgShaderObject.cpp">
@@ -95,13 +80,7 @@
       <Filter>xgLib\actions</Filter>
     </ClCompile>
     <ClCompile Include="src\XgEvent.cpp">
-      <Filter>xgLib\event</Filter>
-    </ClCompile>
-    <ClCompile Include="src\XgEventGoto.cpp">
-      <Filter>xgLib</Filter>
-    </ClCompile>
-    <ClCompile Include="src\XgEventKeyboard.cpp">
-      <Filter>xgLib</Filter>
+      <Filter>xgLib\framework</Filter>
     </ClCompile>
     <ClCompile Include="src\XgKeyboard.cpp">
       <Filter>xgLib</Filter>
@@ -115,6 +94,34 @@
     <ClCompile Include="src\XgPixel.cpp">
       <Filter>xgLib</Filter>
     </ClCompile>
+    <ClCompile Include="src\XgEventGoto.cpp">
+      <Filter>xgLib\framework</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgEventKeyboard.cpp">
+      <Filter>xgLib\framework</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgCharacter.cpp">
+      <Filter>xgLib\character</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgFlipBook.cpp">
+      <Filter>xgLib\character</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgSprite.cpp">
+      <Filter>xgLib\character</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgState.cpp">
+      <Filter>xgLib\framework</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgBehavior.cpp">
+      <Filter>xgLib\actions</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgFramework.cpp">
+      <Filter>xgLib\framework</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgProjectPanel.cpp">
+      <Filter>guiLib</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgWorkSpacePanel.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\XgMessagePanel.h">
@@ -135,31 +142,13 @@
     <ClInclude Include="src\XgTransform.h">
       <Filter>xgLib</Filter>
     </ClInclude>
-    <ClInclude Include="src\XgSprite.h">
-      <Filter>xgLib</Filter>
-    </ClInclude>
-    <ClInclude Include="src\XgState.h">
-      <Filter>xgLib</Filter>
-    </ClInclude>
     <ClInclude Include="src\XgTexture.h">
       <Filter>xgLib</Filter>
     </ClInclude>
     <ClInclude Include="src\XgTracker.h">
       <Filter>xgLib</Filter>
     </ClInclude>
-    <ClInclude Include="src\XgBehavior.h">
-      <Filter>xgLib</Filter>
-    </ClInclude>
-    <ClInclude Include="src\XgCharacter.h">
-      <Filter>xgLib</Filter>
-    </ClInclude>
     <ClInclude Include="src\XgScreenSize.h">
-      <Filter>xgLib</Filter>
-    </ClInclude>
-    <ClInclude Include="src\XgFlipBook.h">
-      <Filter>xgLib</Filter>
-    </ClInclude>
-    <ClInclude Include="src\XgFramework.h">
       <Filter>xgLib</Filter>
     </ClInclude>
     <ClInclude Include="src\XgShaderObject.h">
@@ -193,13 +182,7 @@
       <Filter>xgLib\actions</Filter>
     </ClInclude>
     <ClInclude Include="src\XgEvent.h">
-      <Filter>xgLib\event</Filter>
-    </ClInclude>
-    <ClInclude Include="src\XgEventGoto.h">
-      <Filter>xgLib</Filter>
-    </ClInclude>
-    <ClInclude Include="src\XgEventKeyboard.h">
-      <Filter>xgLib</Filter>
+      <Filter>xgLib\framework</Filter>
     </ClInclude>
     <ClInclude Include="src\XgKeyboard.h">
       <Filter>xgLib</Filter>
@@ -213,5 +196,33 @@
     <ClInclude Include="src\XgPixel.h">
       <Filter>xgLib</Filter>
     </ClInclude>
+    <ClInclude Include="src\XgEventGoto.h">
+      <Filter>xgLib\framework</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgEventKeyboard.h">
+      <Filter>xgLib\framework</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgCharacter.h">
+      <Filter>xgLib\character</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgFlipBook.h">
+      <Filter>xgLib\character</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgSprite.h">
+      <Filter>xgLib\character</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgState.h">
+      <Filter>xgLib\framework</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgBehavior.h">
+      <Filter>xgLib\actions</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgFramework.h">
+      <Filter>xgLib\framework</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgProjectPanel.h">
+      <Filter>guiLib</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgWorkSpacePanel.h" />
   </ItemGroup>
 </Project>
