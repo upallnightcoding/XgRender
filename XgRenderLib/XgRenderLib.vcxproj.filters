@@ -25,6 +25,51 @@
     <ClCompile Include="src\XgTransform.cpp">
       <Filter>xgLib</Filter>
     </ClCompile>
+    <ClCompile Include="src\XgSprite.cpp">
+      <Filter>xgLib</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgState.cpp">
+      <Filter>xgLib</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgTexture.cpp">
+      <Filter>xgLib</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgTracker.cpp">
+      <Filter>xgLib</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgEvent.cpp">
+      <Filter>xgLib</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgBehavior.cpp">
+      <Filter>xgLib</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgAction.cpp">
+      <Filter>xgLib</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgCharacter.cpp">
+      <Filter>xgLib</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgShader.cpp">
+      <Filter>xgLib</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgCamera.cpp">
+      <Filter>xgLib</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgCameraTelemetry.cpp">
+      <Filter>xgLib</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgScreenSize.cpp">
+      <Filter>xgLib</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgFlipBook.cpp">
+      <Filter>xgLib</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgFramework.cpp">
+      <Filter>xgLib</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgShaderObject.cpp">
+      <Filter>xgLib</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\XgMessagePanel.h">
@@ -43,6 +88,51 @@
       <Filter>xgLib</Filter>
     </ClInclude>
     <ClInclude Include="src\XgTransform.h">
+      <Filter>xgLib</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgSprite.h">
+      <Filter>xgLib</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgState.h">
+      <Filter>xgLib</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgTexture.h">
+      <Filter>xgLib</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgTracker.h">
+      <Filter>xgLib</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgEvent.h">
+      <Filter>xgLib</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgBehavior.h">
+      <Filter>xgLib</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgAction.h">
+      <Filter>xgLib</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgCharacter.h">
+      <Filter>xgLib</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgShader.h">
+      <Filter>xgLib</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgCamera.h">
+      <Filter>xgLib</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgCameraTelemetry.h">
+      <Filter>xgLib</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgScreenSize.h">
+      <Filter>xgLib</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgFlipBook.h">
+      <Filter>xgLib</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgFramework.h">
+      <Filter>xgLib</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgShaderObject.h">
       <Filter>xgLib</Filter>
     </ClInclude>
   </ItemGroup>

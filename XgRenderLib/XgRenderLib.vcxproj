@@ -73,7 +73,22 @@
     <Import Project="..\..\..\..\..\..\..\..\..\CppLibs\wxWidgets-3.1.3\wxwidgets.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)bin\$(Platform)$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)bin\intermediates\$(Platform)$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)bin\$(Platform)$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)bin\intermediates\$(Platform)$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(SolutionDir)bin\$(Platform)$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)bin\intermediates\$(Platform)$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)bin\$(Platform)$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)bin\intermediates\$(Platform)$(Configuration)\</IntDir>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -140,16 +155,46 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\Xg.h" />
+    <ClInclude Include="src\XgAction.h" />
+    <ClInclude Include="src\XgBehavior.h" />
+    <ClInclude Include="src\XgCamera.h" />
+    <ClInclude Include="src\XgCameraTelemetry.h" />
     <ClInclude Include="src\XgCanvas.h" />
+    <ClInclude Include="src\XgCharacter.h" />
     <ClInclude Include="src\XgConstants.h" />
+    <ClInclude Include="src\XgEvent.h" />
+    <ClInclude Include="src\XgFlipBook.h" />
+    <ClInclude Include="src\XgFramework.h" />
     <ClInclude Include="src\XgInspectorPanel.h" />
     <ClInclude Include="src\XgMessagePanel.h" />
+    <ClInclude Include="src\XgScreenSize.h" />
+    <ClInclude Include="src\XgShader.h" />
+    <ClInclude Include="src\XgShaderObject.h" />
+    <ClInclude Include="src\XgSprite.h" />
+    <ClInclude Include="src\XgState.h" />
+    <ClInclude Include="src\XgTexture.h" />
+    <ClInclude Include="src\XgTracker.h" />
     <ClInclude Include="src\XgTransform.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\XgAction.cpp" />
+    <ClCompile Include="src\XgBehavior.cpp" />
+    <ClCompile Include="src\XgCamera.cpp" />
+    <ClCompile Include="src\XgCameraTelemetry.cpp" />
     <ClCompile Include="src\XgCanvas.cpp" />
+    <ClCompile Include="src\XgCharacter.cpp" />
+    <ClCompile Include="src\XgEvent.cpp" />
+    <ClCompile Include="src\XgFlipBook.cpp" />
+    <ClCompile Include="src\XgFramework.cpp" />
     <ClCompile Include="src\XgInspectorPanel.cpp" />
     <ClCompile Include="src\XgMessagePanel.cpp" />
+    <ClCompile Include="src\XgScreenSize.cpp" />
+    <ClCompile Include="src\XgShader.cpp" />
+    <ClCompile Include="src\XgShaderObject.cpp" />
+    <ClCompile Include="src\XgSprite.cpp" />
+    <ClCompile Include="src\XgState.cpp" />
+    <ClCompile Include="src\XgTexture.cpp" />
+    <ClCompile Include="src\XgTracker.cpp" />
     <ClCompile Include="src\XgTransform.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
