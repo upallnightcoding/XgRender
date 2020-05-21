@@ -156,6 +156,12 @@
   <ItemGroup>
     <ClInclude Include="src\Xg.h" />
     <ClInclude Include="src\XgAction.h" />
+    <ClInclude Include="src\XgActionChangeAnimation.h" />
+    <ClInclude Include="src\XgActionMove.h" />
+    <ClInclude Include="src\XgActionNegDirection.h" />
+    <ClInclude Include="src\XgActionSetDirection.h" />
+    <ClInclude Include="src\XgActionSpin.h" />
+    <ClInclude Include="src\XgBackGround.h" />
     <ClInclude Include="src\XgBehavior.h" />
     <ClInclude Include="src\XgCamera.h" />
     <ClInclude Include="src\XgCameraTelemetry.h" />
@@ -163,9 +169,12 @@
     <ClInclude Include="src\XgCharacter.h" />
     <ClInclude Include="src\XgConstants.h" />
     <ClInclude Include="src\XgEvent.h" />
+    <ClInclude Include="src\XgEventGoto.h" />
+    <ClInclude Include="src\XgEventKeyboard.h" />
     <ClInclude Include="src\XgFlipBook.h" />
     <ClInclude Include="src\XgFramework.h" />
     <ClInclude Include="src\XgInspectorPanel.h" />
+    <ClInclude Include="src\XgKeyboard.h" />
     <ClInclude Include="src\XgMessagePanel.h" />
     <ClInclude Include="src\XgScreenSize.h" />
     <ClInclude Include="src\XgShader.h" />
@@ -178,15 +187,24 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\XgAction.cpp" />
+    <ClCompile Include="src\XgActionChangeAnimation.cpp" />
+    <ClCompile Include="src\XgActionMove.cpp" />
+    <ClCompile Include="src\XgActionNegDirection.cpp" />
+    <ClCompile Include="src\XgActionSetDirection.cpp" />
+    <ClCompile Include="src\XgActionSpin.cpp" />
+    <ClCompile Include="src\XgBackGround.cpp" />
     <ClCompile Include="src\XgBehavior.cpp" />
     <ClCompile Include="src\XgCamera.cpp" />
     <ClCompile Include="src\XgCameraTelemetry.cpp" />
     <ClCompile Include="src\XgCanvas.cpp" />
     <ClCompile Include="src\XgCharacter.cpp" />
     <ClCompile Include="src\XgEvent.cpp" />
+    <ClCompile Include="src\XgEventGoto.cpp" />
+    <ClCompile Include="src\XgEventKeyboard.cpp" />
     <ClCompile Include="src\XgFlipBook.cpp" />
     <ClCompile Include="src\XgFramework.cpp" />
     <ClCompile Include="src\XgInspectorPanel.cpp" />
+    <ClCompile Include="src\XgKeyboard.cpp" />
     <ClCompile Include="src\XgMessagePanel.cpp" />
     <ClCompile Include="src\XgScreenSize.cpp" />
     <ClCompile Include="src\XgShader.cpp" />
