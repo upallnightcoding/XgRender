@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="xgLib">
+      <UniqueIdentifier>{221d4938-5216-495e-b94a-8ab988bf8054}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guiLib">
+      <UniqueIdentifier>{5d41884b-02cf-4bd0-b44f-afab7e9b05db}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\XgMessagePanel.cpp">
+      <Filter>guiLib</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgInspectorPanel.cpp">
+      <Filter>guiLib</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgCanvas.cpp">
+      <Filter>guiLib</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgTransform.cpp">
+      <Filter>xgLib</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\XgMessagePanel.h">
+      <Filter>guiLib</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgInspectorPanel.h">
+      <Filter>guiLib</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgCanvas.h">
+      <Filter>guiLib</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Xg.h">
+      <Filter>xgLib</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgConstants.h">
+      <Filter>xgLib</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgTransform.h">
+      <Filter>xgLib</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
