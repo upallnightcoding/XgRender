@@ -188,6 +188,7 @@
     <ClInclude Include="src\XgTransform.h" />
     <ClInclude Include="src\XgProjectPanel.h" />
     <ClInclude Include="src\XgWorkSpacePanel.h" />
+    <ClInclude Include="src\XgTestCase.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\XgAction.cpp" />
@@ -222,6 +223,7 @@
     <ClCompile Include="src\XgTransform.cpp" />
     <ClCompile Include="src\XgProjectPanel.cpp" />
     <ClCompile Include="src\XgWorkSpacePanel.cpp" />
+    <ClCompile Include="src\XgTestCase.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

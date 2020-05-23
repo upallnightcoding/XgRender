@@ -19,6 +19,8 @@ XgMessagePanel::XgMessagePanel(wxWindow *parent) :
 	listBox->Append(wxT("Testing 4"));
 	listBox->Append(wxT("Testing 5"));
 
+	displayText("Place this at the end ...");
+
 	wxStaticBoxSizer *sizer = new wxStaticBoxSizer(wxVERTICAL, this, _T("Message Panel"));
 
 	sizer->Add(listBox, 1, wxALL | wxEXPAND, 5);
@@ -29,4 +31,9 @@ XgMessagePanel::XgMessagePanel(wxWindow *parent) :
 
 XgMessagePanel::~XgMessagePanel()
 {
+}
+
+void XgMessagePanel::displayText(wxString text)
+{
+	listBox->Append(text);
 }

@@ -4,6 +4,8 @@
 #include "wx/wx.h"
 #include "wx/glcanvas.h"
 
+#include "XgMessagePanel.h"
+
 class XgCanvas :
 	public wxGLCanvas
 {
@@ -31,12 +33,33 @@ public:
 	void keyPressed(wxKeyEvent& event);
 	void keyReleased(wxKeyEvent& event);
 
-	DECLARE_EVENT_TABLE()
+	void set(XgMessagePanel *messagePanel);
 
 private:
-	wxGLContext*	m_context;
+	void OnSpinTimer(wxTimerEvent& WXUNUSED(event));
+
+	wxDECLARE_EVENT_TABLE();
+
+private:
+	wxGLContext*	glContext;
 	GLfloat rotate = 0.0;
+	wxTimer m_spinTimer;
+	XgMessagePanel *messagePanel;
+
+	double deltaTime;
+	int tickCount;
+	int fps;
+	double limitFPS;
+
+	double lastTime;
+	double timer;
+	double nowTime;
 };
+
+inline void XgCanvas::set(XgMessagePanel *messagePanel) 
+{
+	this->messagePanel = messagePanel;
+}
 
 
 

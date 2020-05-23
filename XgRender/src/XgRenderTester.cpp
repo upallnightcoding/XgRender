@@ -34,25 +34,45 @@
 
 class XgRender : public wxApp
 {
+public:
+	XgRender();
+
+public:
 	virtual bool OnInit();
 
-	void createFrameworks(wxFrame *frame);
+	void createRenderGUI(wxFrame *frame);
 
 	wxFrame *frame;
 
 private:
 	void createMenu(wxFrame *frame);
 	wxPanel *createProjectPanel(wxSplitterWindow *splittermain);
-	wxPanel *createWorkSpace(wxSplitterWindow *splittermain);
-	wxWindow *createFrameworksPanel(wxSplitterWindow *splittermain);
+	wxPanel *createWorkSpacePanel(wxSplitterWindow *splittermain, XgMessagePanel *messagePanel);
+	wxWindow *createProjectArea(wxSplitterWindow *splittermain);
 	wxPanel *createInspectorPanel(wxSplitterWindow *splittermain);
-	wxWindow *createWorkSpacePanel(wxSplitterWindow *splittermain);
-	wxPanel *createMessagePanel(wxSplitterWindow *splittermain);
+	wxWindow *createWorkSpaceArea(wxSplitterWindow *splittermain);
+	XgMessagePanel *createMessagePanel(wxSplitterWindow *splittermain);
+
+private:
+	XgProjectPanel *projectPanel;
+	XgMessagePanel *messagePanel;
+	XgWorkSpacePanel *workSpacePanel;
+	XgInspectorPanel *inspectorPanel;
 };
 
 IMPLEMENT_APP(XgRender)
 
+XgRender::XgRender()
+{
+	projectPanel = NULL;
+	messagePanel = NULL;
+	workSpacePanel = NULL;
+	inspectorPanel = NULL;
+}
 
+/*****************************************************************************
+setScale() -
+*****************************************************************************/
 bool XgRender::OnInit()
 {
 	wxBoxSizer* sizer = new wxBoxSizer(wxHORIZONTAL);
@@ -67,7 +87,7 @@ bool XgRender::OnInit()
 	//glPane = NULL;
 	//sizer->Add(glPane, 1, wxEXPAND);
 
-	createFrameworks(frame);
+	createRenderGUI(frame);
 
 	//frame->SetSizer(sizer);
 	frame->SetAutoLayout(true);
@@ -76,6 +96,9 @@ bool XgRender::OnInit()
 	return true;
 }
 
+/*****************************************************************************
+setScale() -
+*****************************************************************************/
 void XgRender::createMenu(wxFrame *frame)
 {
 	wxMenuBar *menuBar = new wxMenuBar();
@@ -90,7 +113,10 @@ void XgRender::createMenu(wxFrame *frame)
 	frame->SetMenuBar(menuBar);
 }
 
-void XgRender::createFrameworks(wxFrame *frame)
+/*****************************************************************************
+setScale() -
+*****************************************************************************/
+void XgRender::createRenderGUI(wxFrame *frame)
 {
 	wxBoxSizer *sizer = new wxBoxSizer(wxHORIZONTAL);
 
@@ -98,9 +124,9 @@ void XgRender::createFrameworks(wxFrame *frame)
 
 	sizer->Add(splitter, 1, wxBOTTOM | wxLEFT | wxEXPAND, 5);
 
-	wxWindow *frameWorkPanel = createFrameworksPanel(splitter);
+	wxWindow *frameWorkPanel = createProjectArea(splitter);
 
-	wxWindow *workSpacePanel = createWorkSpacePanel(splitter);
+	wxWindow *workSpacePanel = createWorkSpaceArea(splitter);
 
 	splitter->SplitVertically(frameWorkPanel, workSpacePanel);
 	splitter->SetSashPosition(300, true);
@@ -108,7 +134,10 @@ void XgRender::createFrameworks(wxFrame *frame)
 	frame->SetSizer(sizer);
 }
 
-wxWindow *XgRender::createFrameworksPanel(wxSplitterWindow *splittermain)
+/*****************************************************************************
+setScale() -
+*****************************************************************************/
+wxWindow *XgRender::createProjectArea(wxSplitterWindow *splittermain)
 {
 	wxBoxSizer *sizer = new wxBoxSizer(wxHORIZONTAL);
 
@@ -116,11 +145,11 @@ wxWindow *XgRender::createFrameworksPanel(wxSplitterWindow *splittermain)
 
 	wxSplitterWindow *splitter = new wxSplitterWindow(panel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxSP_LIVE_UPDATE);
 
-	wxPanel *topPanel = createProjectPanel(splitter);
+	wxPanel *projectPanel = createProjectPanel(splitter);
 
-	wxPanel *bottomPanel = createInspectorPanel(splitter);
+	wxPanel *inspectorPanel = createInspectorPanel(splitter);
 
-	splitter->SplitHorizontally(topPanel, bottomPanel);
+	splitter->SplitHorizontally(projectPanel, inspectorPanel);
 	splitter->SetSashPosition(300, true);
 
 	sizer->Add(splitter, 1, wxBOTTOM | wxLEFT | wxEXPAND, 5);
@@ -130,17 +159,20 @@ wxWindow *XgRender::createFrameworksPanel(wxSplitterWindow *splittermain)
 	return(panel);
 }
 
-wxWindow *XgRender::createWorkSpacePanel(wxSplitterWindow *splittermain)
+/*****************************************************************************
+setScale() -
+*****************************************************************************/
+wxWindow *XgRender::createWorkSpaceArea(wxSplitterWindow *splittermain)
 {
 	wxPanel *panel = new wxPanel(splittermain, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL | wxNO_BORDER);
 
 	wxSplitterWindow *splitter = new wxSplitterWindow(panel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxSP_LIVE_UPDATE);
 
-	wxPanel *topPanel = createWorkSpace(splitter);
+	XgMessagePanel *messagePanel = createMessagePanel(splitter);
 
-	wxPanel *bottomPanel = createMessagePanel(splitter);
+	wxPanel *workSpacePanel = createWorkSpacePanel(splitter, messagePanel);
 
-	splitter->SplitHorizontally(topPanel, bottomPanel);
+	splitter->SplitHorizontally(workSpacePanel, messagePanel);
 	splitter->SetSashPosition(300, true);
 
 	wxBoxSizer *sizer = new wxBoxSizer(wxHORIZONTAL);
@@ -152,30 +184,42 @@ wxWindow *XgRender::createWorkSpacePanel(wxSplitterWindow *splittermain)
 	return(panel);
 }
 
+/*****************************************************************************
+createInspectorPanel() -
+*****************************************************************************/
 wxPanel *XgRender::createInspectorPanel(wxSplitterWindow *splittermain)
 {
-	XgInspectorPanel *inspectorPanel = new XgInspectorPanel(splittermain);
+	inspectorPanel = new XgInspectorPanel(splittermain);
 
 	return(inspectorPanel);
 }
 
-wxPanel *XgRender::createWorkSpace(wxSplitterWindow *splittermain)
+/*****************************************************************************
+createWorkSpacePanel() -
+*****************************************************************************/
+wxPanel *XgRender::createWorkSpacePanel(wxSplitterWindow *splittermain, XgMessagePanel *messagePanel)
 {
-	XgWorkSpacePanel *workSpacePanel = new XgWorkSpacePanel(splittermain);
+	workSpacePanel = new XgWorkSpacePanel(splittermain, messagePanel);
 
 	return(workSpacePanel);
 }
 
-wxPanel *XgRender::createMessagePanel(wxSplitterWindow *splittermain)
+/*****************************************************************************
+createMessagePanel() -
+*****************************************************************************/
+XgMessagePanel *XgRender::createMessagePanel(wxSplitterWindow *splittermain)
 {
-	XgMessagePanel *messagePanel = new XgMessagePanel(splittermain);
+	messagePanel = new XgMessagePanel(splittermain);
 
 	return(messagePanel);
 }
 
+/*****************************************************************************
+createProjectPanel() -
+*****************************************************************************/
 wxPanel *XgRender::createProjectPanel(wxSplitterWindow *splittermain)
 {
-	XgProjectPanel *projectPanel = new XgProjectPanel(splittermain);
+	projectPanel = new XgProjectPanel(splittermain);
 
 	return(projectPanel);
 }

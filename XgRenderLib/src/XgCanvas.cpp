@@ -8,7 +8,16 @@
 #include <GL/gl.h>
 #endif
 
-BEGIN_EVENT_TABLE(XgCanvas, wxGLCanvas)
+#include <string>
+#include <iostream>
+#include <sstream>
+
+enum
+{
+	SpinTimer = wxID_HIGHEST + 1
+};
+
+wxBEGIN_EVENT_TABLE(XgCanvas, wxGLCanvas)
 EVT_MOTION(XgCanvas::mouseMoved)
 EVT_LEFT_DOWN(XgCanvas::mouseDown)
 EVT_LEFT_UP(XgCanvas::mouseReleased)
@@ -19,19 +28,27 @@ EVT_KEY_DOWN(XgCanvas::keyPressed)
 EVT_KEY_UP(XgCanvas::keyReleased)
 EVT_MOUSEWHEEL(XgCanvas::mouseWheelMoved)
 EVT_PAINT(XgCanvas::render)
-END_EVENT_TABLE()
+EVT_TIMER(SpinTimer, XgCanvas::OnSpinTimer)
+wxEND_EVENT_TABLE()
+
+
 
 GLfloat data[8][3];
 GLint testfaces[6][4] = {  /* Vertex indices for the 6 testfaces of a cube. */
 	{0, 1, 2, 3}, {3, 2, 6, 7}, {7, 6, 5, 4},
 	{4, 5, 1, 0}, {5, 6, 2, 1}, {7, 4, 0, 3} };
 
-//XgCanvas::XgCanvas(wxFrame* parent, int* args) :
-	//wxGLCanvas(parent, wxID_ANY, args, wxDefaultPosition, wxDefaultSize, wxFULL_REPAINT_ON_RESIZE)
 XgCanvas::XgCanvas(wxWindow* parent, int* args) :
-	wxGLCanvas(parent, wxID_ANY, args, wxDefaultPosition, wxDefaultSize, wxFULL_REPAINT_ON_RESIZE)
+	wxGLCanvas(
+		parent, 
+		wxID_ANY, 
+		args, 
+		wxDefaultPosition, 
+		wxDefaultSize, 
+		wxFULL_REPAINT_ON_RESIZE
+), m_spinTimer(this, SpinTimer)
 {
-	m_context = new wxGLContext(this);
+	glContext = new wxGLContext(this);
 	// prepare a simple cube to demonstrate 3D render
 	// source: http://www.opengl.org/resources/code/samples/glut_examples/examples/cube.c
 	data[0][0] = data[1][0] = data[2][0] = data[3][0] = -1.0;
@@ -43,17 +60,34 @@ XgCanvas::XgCanvas(wxWindow* parent, int* args) :
 
 	// To avoid flashing on MSW
 	SetBackgroundStyle(wxBG_STYLE_CUSTOM);
+
+	m_spinTimer.Start(10);
+
+	deltaTime = 0; 
+	nowTime = 0;
+	tickCount = 0;
+	fps = 0;
+	limitFPS = 1.0f / 60.0f;
+
+	lastTime = wxGetUTCTimeMillis().ToDouble() / 1000.0f;
+	timer = lastTime;
 }
 
 XgCanvas::~XgCanvas()
 {
-	delete m_context;
+	delete glContext;
+}
+
+void XgCanvas::OnSpinTimer(wxTimerEvent& WXUNUSED(event))
+{
+	Refresh(false);
 }
 
 void XgCanvas::mouseMoved(wxMouseEvent& event) 
 {
 	Refresh();
 }
+
 void XgCanvas::mouseDown(wxMouseEvent& event) {}
 void XgCanvas::mouseWheelMoved(wxMouseEvent& event) {}
 void XgCanvas::mouseReleased(wxMouseEvent& event) {}
@@ -64,7 +98,7 @@ void XgCanvas::keyReleased(wxKeyEvent& event) {}
 
 void XgCanvas::resized(wxSizeEvent& evt)
 {
-	//	wxGLCanvas::OnSize(evt);
+	//wxGLCanvas::OnSize(evt);
 
 	Refresh();
 }
@@ -121,19 +155,75 @@ int XgCanvas::getHeight()
 	return GetSize().y;
 }
 
-
+/*****************************************************************************
+render() -
+*****************************************************************************/
 void XgCanvas::render(wxPaintEvent& evt)
+{
+	nowTime = wxGetUTCTimeMillis().ToDouble() / 1000.0f;
+	deltaTime += (nowTime - lastTime) / limitFPS;
+	lastTime = nowTime;
+
+	if (!IsShown()) return;
+
+	wxGLCanvas::SetCurrent(*glContext);
+	wxPaintDC(this); // only to be used in paint events. use wxClientDC to paint outside the paint event
+
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	// ------------- draw some 3D ----------------
+	prepare3DViewport(getWidth() / 2, 0, getWidth(), getHeight());
+	
+	glColor4f(0, 0, 1, 1);
+	glTranslatef(0, 0, -5);
+	glRotatef(rotate, 0.0f, 1.0f, 0.0f);
+
+	rotate += 1.0f;
+
+	glColor4f(1, 0, 0, 1);
+	for (int i = 0; i < 6; i++)
+	{
+		glBegin(GL_LINE_STRIP);
+		glVertex3fv(&data[testfaces[i][0]][0]);
+		glVertex3fv(&data[testfaces[i][1]][0]);
+		glVertex3fv(&data[testfaces[i][2]][0]);
+		glVertex3fv(&data[testfaces[i][3]][0]);
+		glVertex3fv(&data[testfaces[i][0]][0]);
+		glEnd();
+	}
+
+	glFlush();
+	SwapBuffers();
+
+	while (deltaTime >= 1.0) {
+		fps++;
+		deltaTime--;
+	}
+
+	tickCount++;
+
+	// - Reset after one second
+	if (nowTime - timer > 1.0) {
+		timer = nowTime;
+		std::stringstream buffer;
+		buffer << "Ticks: " << tickCount << " FPS:" << fps << std::endl;
+		messagePanel->displayText(buffer.str());
+		fps = 0; tickCount = 0;
+	}
+} 
+
+/*void XgCanvas::render(wxPaintEvent& evt)
 {
 	if (!IsShown()) return;
 
-	wxGLCanvas::SetCurrent(*m_context);
+	wxGLCanvas::SetCurrent(*glContext);
 	wxPaintDC(this); // only to be used in paint events. use wxClientDC to paint outside the paint event
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	// ------------- draw some 2D ----------------
 	prepare2DViewport(0, 0, getWidth() / 2, getHeight());
-	glLoadIdentity();
+	//glLoadIdentity();
 
 	// white background
 	glColor4f(1, 1, 1, 1);
@@ -155,7 +245,7 @@ void XgCanvas::render(wxPaintEvent& evt)
 
 	// ------------- draw some 3D ----------------
 	prepare3DViewport(getWidth() / 2, 0, getWidth(), getHeight());
-	glLoadIdentity();
+	//glLoadIdentity();
 
 	glColor4f(0, 0, 1, 1);
 	glTranslatef(0, 0, -5);
@@ -177,4 +267,4 @@ void XgCanvas::render(wxPaintEvent& evt)
 
 	glFlush();
 	SwapBuffers();
-}
+}*/

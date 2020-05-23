@@ -121,7 +121,10 @@
     <ClCompile Include="src\XgProjectPanel.cpp">
       <Filter>guiLib</Filter>
     </ClCompile>
-    <ClCompile Include="src\XgWorkSpacePanel.cpp" />
+    <ClCompile Include="src\XgWorkSpacePanel.cpp">
+      <Filter>guiLib</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XgTestCase.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\XgMessagePanel.h">
@@ -223,6 +226,9 @@
     <ClInclude Include="src\XgProjectPanel.h">
       <Filter>guiLib</Filter>
     </ClInclude>
-    <ClInclude Include="src\XgWorkSpacePanel.h" />
+    <ClInclude Include="src\XgWorkSpacePanel.h">
+      <Filter>guiLib</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XgTestCase.h" />
   </ItemGroup>
 </Project>

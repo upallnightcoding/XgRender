@@ -5,7 +5,7 @@
 
 #include "XgCanvas.h"
 
-XgWorkSpacePanel::XgWorkSpacePanel(wxWindow *parent) :
+XgWorkSpacePanel::XgWorkSpacePanel(wxWindow *parent, XgMessagePanel *messagePanel) :
 	wxPanel(
 		parent,
 		wxID_ANY,
@@ -25,6 +25,7 @@ XgWorkSpacePanel::XgWorkSpacePanel(wxWindow *parent) :
 	SetSizer(sizer);
 
 	XgCanvas *canvas = new XgCanvas(notebook, args);
+	canvas->set(messagePanel);
 
 	wxTextCtrl* textCtrl1 = new wxTextCtrl(notebook, wxID_ANY, L"Tab 1 Contents");
 

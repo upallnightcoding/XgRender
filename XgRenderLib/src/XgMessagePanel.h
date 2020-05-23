@@ -9,6 +9,9 @@ public:
 	XgMessagePanel(wxWindow *parent);
 	virtual ~XgMessagePanel();
 
+public:
+	void displayText(wxString text);
+
 private:
 	wxListBox *listBox;
 };
